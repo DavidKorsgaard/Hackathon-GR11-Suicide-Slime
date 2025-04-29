@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Slime : MonoBehaviour
 {
-    private Renderer renderer;
+    private new Renderer renderer;
 
     void Start()
     {

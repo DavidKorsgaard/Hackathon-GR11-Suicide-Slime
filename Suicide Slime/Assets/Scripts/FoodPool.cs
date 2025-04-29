@@ -33,4 +33,9 @@ public class FoodPool : MonoBehaviour
         }
         return null;
     }
+
+    public void ReturnToPool(GameObject obj)
+    {
+        obj.SetActive(false);
+    }
 }
