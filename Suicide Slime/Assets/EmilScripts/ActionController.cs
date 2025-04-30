@@ -12,7 +12,8 @@ public class ActionController : MonoBehaviour
     //SerializeField is used so we can adjust the values in the unity inspector
     [SerializeField] float jumpForce = 10f;
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float JumpSpeed = 5f;
+    [SerializeField] float jumpSpeed = 5f;
+    [SerializeField] float delayBetweenActions = 5f;
 
     private void Start()
     {
@@ -43,13 +44,13 @@ public class ActionController : MonoBehaviour
     }
     void JumpRight()
     {
-        rb.AddForce((Vector3.up + Vector3.right * JumpSpeed) * jumpForce, ForceMode2D.Impulse); //Same as in JumpUp but by combining Vector3.up with Vector3.right diagonally right
+        rb.AddForce((Vector3.up + Vector3.right * jumpSpeed) * jumpForce, ForceMode2D.Impulse); //Same as in JumpUp but by combining Vector3.up with Vector3.right diagonally right
         Debug.Log("JumpRight");
     }
 
     void JumpLeft()
     {
-        rb.AddForce((Vector3.up + Vector3.left * JumpSpeed) * jumpForce, ForceMode2D.Impulse); //Same as in JumpUp but by combining Vector3.up with Vector3.left diagonally left
+        rb.AddForce((Vector3.up + Vector3.left * jumpSpeed) * jumpForce, ForceMode2D.Impulse); //Same as in JumpUp but by combining Vector3.up with Vector3.left diagonally left
         Debug.Log("JumpLeft");
     }
 
@@ -72,7 +73,7 @@ public class ActionController : MonoBehaviour
             {
                 lastAction = action;
                 action.Invoke();                         //Invokes the action
-                yield return new WaitForSeconds(3f);     //Makes the delay between actions 3 seconds
+                yield return new WaitForSeconds(delayBetweenActions);     //Makes the delay between actions 3 seconds
             }
         }
     }
