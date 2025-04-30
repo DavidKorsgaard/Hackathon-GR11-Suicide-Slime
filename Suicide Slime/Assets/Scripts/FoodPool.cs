@@ -17,6 +17,7 @@ public class FoodPool : MonoBehaviour
             {
                 GameObject obj = Instantiate(prefab);
                 obj.SetActive(false);
+                obj.AddComponent<Rigidbody2D>(); // Add Rigidbody2D component
                 pooledObjects.Add(obj);
             }
         }
