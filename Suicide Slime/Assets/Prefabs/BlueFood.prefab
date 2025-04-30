@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4feee33d2884749a7019123d1954a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nutritionalValue: 15
+  nutritionalValue: 7
+  foodColor: {r: 0, g: 0.22745098, b: 0.7176471, a: 1}
 --- !u!50 &-4768183049595682139
 Rigidbody2D:
   serializedVersion: 5

@@ -39,13 +39,11 @@ public class Slime : MonoBehaviour
     {
         Debug.Log("Feed Slime!");
         satiety += nutrition;
+        if (satiety > maxSatiety)
+        {
+            satiety = maxSatiety;//wow
+        }
         Debug.Log("New Satiety: " + satiety);
         renderer.material.color = color;
     }
-    
-    public void ChangeColor(Color color)
-    {
-        renderer.material.color = color;
-    }
-
 }
