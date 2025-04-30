@@ -17,7 +17,14 @@ public class FoodPool : MonoBehaviour
             {
                 GameObject obj = Instantiate(prefab);
                 obj.SetActive(false);
-                obj.AddComponent<Rigidbody2D>(); // Add Rigidbody2D component
+                if (obj.GetComponent<Rigidbody2D>() == null)
+                {
+                    obj.AddComponent<Rigidbody2D>(); // Add Rigidbody2D component if not already present
+                }
+                if (obj.GetComponent<Collider2D>() == null)
+                {
+                    obj.AddComponent<BoxCollider2D>(); // Add Collider2D component if not already present
+                }
                 pooledObjects.Add(obj);
             }
         }

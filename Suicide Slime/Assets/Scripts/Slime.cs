@@ -43,4 +43,10 @@ public class Slime : MonoBehaviour
         Debug.Log("New Satiety: " + satiety);
         renderer.material.color = color;
     }
+    
+    public void ChangeColor(Color color)
+    {
+        renderer.material.color = color;
+    }
+
 }
