@@ -18,30 +18,34 @@ public class ActionController : MonoBehaviour
     }
     void MoveLeft()
     {
-        rb.linearVelocity = new Vector2(-moveSpeed, rb.linearVelocity.y); // Change the objects linear velocity on x-axis to MoveLeft when method is called
+        rb.linearVelocity = new Vector2(-moveSpeed, rb.linearVelocity.y); // Change the objects linear velocity on x-axis to move left when method is called
+        Debug.Log("MoveLeft");
     }
 
     void MoveRight()
     {
-        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y); // Change the objects linear velocity on x-axis to MoveRight when method is called
+        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y); // Change the objects linear velocity on x-axis to move right when method is called
+        Debug.Log("MoveRight");
     }
 
     void JumpUp() 
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse); // AddForce applies force to object. 
-    }                                                             //ForceMode2D.Impulse tells unity how to apply it, Impulse gives it an instant push
-
+        Debug.Log("JumpUp");                                      //ForceMode2D.Impulse tells unity how to apply it, Impulse gives it an instant push
+    }
     void JumpRight()
     {
         rb.AddForce((Vector3.up + Vector3.right) * jumpForce, ForceMode2D.Impulse); //Same as in JumpUp but by combining Vector3.up with Vector3.right diagonally right
+        Debug.Log("JumpRight");
     }
 
     void JumpLeft()
     {
         rb.AddForce((Vector3.up + Vector3.left) * jumpForce, ForceMode2D.Impulse); //Same as in JumpUp but by combining Vector3.up with Vector3.left diagonally left
+        Debug.Log("JumpLeft");
     }
 
-    IEnumerator RandomActions() //Courentine that runs a random set of actions with a delay between each
+    IEnumerator RandomActions()    //Courentine that runs a random set of actions with a delay between each
     {
         while (true)
         {
@@ -54,12 +58,12 @@ public class ActionController : MonoBehaviour
                 JumpLeft
             };
 
-            Shuffle(actions);  //Shuffles list randomly with the Shuffle<T>() method
+            Shuffle(actions);                            //Shuffles list randomly with the Shuffle<T>() method
 
-            foreach (var action in actions)  //Loops through the shuffled actions
+            foreach (var action in actions)              //Loops through the shuffled actions
             {
-                action.Invoke();  //Invokes the action
-                yield return new WaitForSeconds(3f);  //Makes the delay between actions 3 seconds
+                action.Invoke();                         //Invokes the action
+                yield return new WaitForSeconds(3f);     //Makes the delay between actions 3 seconds
             }
         }
     }
