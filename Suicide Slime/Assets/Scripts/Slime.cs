@@ -12,6 +12,7 @@ public class Slime : MonoBehaviour
     
     void Start()
     {
+        Debug.Log("Slime Start");
         renderer = GetComponent<Renderer>();
         satiety = maxSatiety;
     }
@@ -19,7 +20,7 @@ public class Slime : MonoBehaviour
     void Update()
     {
         hungerTime += Time.deltaTime;
-        if (hungerTime % hungerRate >= 1)
+        if (hungerTime >= hungerRate)
         {
             hungerTime -= hungerRate;
             satiety--;
@@ -29,9 +30,7 @@ public class Slime : MonoBehaviour
         if (satiety <= 0)
         {
             //Run some kill slime method elsewhere
-            #if DEBUG
             Debug.Log("Slime dead");
-            #endif
             
         }
     }
