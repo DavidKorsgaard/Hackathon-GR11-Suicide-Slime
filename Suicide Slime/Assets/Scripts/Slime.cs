@@ -1,20 +1,20 @@
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Slime : MonoBehaviour
 {
-    private new Renderer renderer;
-
     //Mig der prøver at finde på det modsatte af hunger :(
     [SerializeField] private int maxSatiety;
     private int satiety;
+    private SpriteShapeRenderer spriteRenderer;
     [SerializeField] private float hungerRate =1;
     private float hungerTime;
     
     void Start()
     {
         Debug.Log("Slime Start");
-        renderer = GetComponent<Renderer>();
         satiety = maxSatiety;
+        spriteRenderer = GetComponentInChildren<SpriteShapeRenderer>();
     }
 
     void Update()
@@ -29,9 +29,8 @@ public class Slime : MonoBehaviour
 
         if (satiety <= 0)
         {
-            //Run some kill slime method elsewhere
             Debug.Log("Slime dead");
-            
+            KillSlime("lmao");
         }
     }
 
@@ -41,9 +40,15 @@ public class Slime : MonoBehaviour
         satiety += nutrition;
         if (satiety > maxSatiety)
         {
-            satiety = maxSatiety;//wow
+            satiety = maxSatiety;
         }
         Debug.Log("New Satiety: " + satiety);
-        renderer.material.color = color;
+        spriteRenderer.color = color;
+    }
+
+    public virtual void KillSlime(string deathType)
+    {
+        
+        Destroy(gameObject);
     }
 }
