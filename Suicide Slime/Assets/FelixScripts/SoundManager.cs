@@ -10,7 +10,7 @@ public enum SoundType
     JUMP,
     DEATH,
     SLIME,
-    BACKGROUND
+    LAND
 
 
 }
