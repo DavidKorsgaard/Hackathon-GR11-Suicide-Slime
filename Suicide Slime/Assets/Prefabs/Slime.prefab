@@ -881,6 +881,7 @@ GameObject:
   - component: {fileID: 5265113179497035985}
   - component: {fileID: 7672841792607052264}
   - component: {fileID: 3766324812548019238}
+  - component: {fileID: 4765394459689490334}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -1070,9 +1071,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
-  jumpForce: 50
-  moveSpeed: 25
-  jumpSpeed: 5
+  jumpForce: 25
+  moveSpeed: 10
+  jumpSpeed: 2
   delayBetweenActions: 5
 --- !u!114 &3766324812548019238
 MonoBehaviour:
@@ -1086,8 +1087,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbc71d37fe1044d2a17486afc2dfe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSatiety: 10
+  maxSatiety: 200
   hungerRate: 2
+--- !u!114 &4765394459689490334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609295562829006416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb6dfc7712ca0f4490eb4f99dab1ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityOrientationRawData: {x: 0, y: 0, z: 0}
+  rotationCutOffLimit: 0.3
 --- !u!1 &6092433263727451988
 GameObject:
   m_ObjectHideFlags: 0

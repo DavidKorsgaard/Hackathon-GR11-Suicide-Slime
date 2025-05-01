@@ -13,7 +13,7 @@ public class Slime : MonoBehaviour
     private SpriteShapeRenderer spriteRenderer;
     [SerializeField] private float hungerRate =1; /* s/nutrient */
     private float hungerTime;
-    private float forceSize = 30f;
+    [SerializeField] private float forceSize = 30f;
     Rigidbody2D slimeRigidbody;
     private bool gameOver;
     private ActionController actionController;
