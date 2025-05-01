@@ -26,7 +26,7 @@ public class IntroAndStartGame : MonoBehaviour
 
     void Update()
     {
-        if (!dialogueFinished && Input.GetMouseButtonDown(0))    //Checks if dialogue is not finished yet and if player clicks
+        if (!dialogueFinished && Input.GetMouseButtonUp(0))   //Checks if dialogue is not finished yet and if player clicks
         {
             ShowNextDialogueLine();
         }
