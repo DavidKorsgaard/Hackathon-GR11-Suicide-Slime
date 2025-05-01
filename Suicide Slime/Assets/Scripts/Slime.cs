@@ -17,7 +17,7 @@ public class Slime : MonoBehaviour
         Debug.Log("Slime Start");
         satiety = maxSatiety;
         spriteRenderer = GetComponentInChildren<SpriteShapeRenderer>();
-        InputManager.onGravityApply += slimeFall;
+        InputManager.onGravityApply += slimeFall; // slimeFall method is applied to onGravityApply action event
         slimeRigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -56,17 +56,13 @@ public class Slime : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void slimeFall(float phoneXValue)
+    void slimeFall(float phoneXValue) 
     {
-        if(phoneXValue > 0){
-            //Debug.Log("right");
+        if(phoneXValue > 0){ // If phone is leaning right move slime right
             slimeRigidbody.AddForce(Vector2.right * phoneXValue * forceSize);
-            //Debug.Log(Vector2.right * (1 - phoneXValue) * forceSize);
         }
-        if(phoneXValue < 0){
-            //Debug.Log("left");
+        if(phoneXValue < 0){ // If phone is leaning left move slime right
             slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);
-            //Debug.Log(Vector2.left * (1 - phoneXValue) * forceSize);
         }
     }
 }
