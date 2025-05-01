@@ -3,31 +3,28 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
-using Random = System.Random;
 
-public class Slime : MonoBehaviour
+public class NewSlime : MonoBehaviour
 {
-    //Mig der prøver at finde på det modsatte af hunger :(
     [SerializeField] private int maxSatiety;
     private int satiety;
     private SpriteShapeRenderer spriteRenderer;
-    [SerializeField] private float hungerRate =1; /* s/nutrient */
+    [SerializeField] private float hungerRate = 1f;
     private float hungerTime;
     [SerializeField] private float forceSize = 30f;
-    Rigidbody2D slimeRigidbody;
+
+    private Rigidbody2D slimeRigidbody;
     private bool gameOver;
     private ActionController actionController;
-    
+
     void Start()
     {
-        Debug.Log("Slime Start");
+        Debug.Log("NewSlime Start");
         satiety = maxSatiety;
         actionController = GetComponent<ActionController>();
         spriteRenderer = GetComponentInChildren<SpriteShapeRenderer>();
-        InputManager.onGravityApply += slimeFall; // slimeFall method is applied to onGravityApply action event
+        InputManager.onGravityApply += slimeFall;
         slimeRigidbody = GetComponent<Rigidbody2D>();
-
-
     }
 
     void Update()
@@ -44,29 +41,22 @@ public class Slime : MonoBehaviour
 
             if (satiety <= 0)
             {
-                Debug.Log("Slime dead");
+                Debug.Log("NewSlime dead");
                 KillSlime("hunger");
             }
-        }
-
-        if (transform.position.y < -10)
-        {
-            KillSlime("OoB");
         }
     }
 
     public void FeedSlime(Color color, int nutrition)
     {
-        Debug.Log("Feed Slime!");
+        Debug.Log("Feed NewSlime!");
         satiety += nutrition;
         if (satiety > maxSatiety)
         {
             satiety = maxSatiety;
         }
         Debug.Log("New Satiety: " + satiety);
-        color.a = 0.647f;
         spriteRenderer.color = color;
-
     }
 
     public virtual void KillSlime(string deathType)
@@ -74,53 +64,48 @@ public class Slime : MonoBehaviour
         switch (deathType)
         {
             case "lmao":
-                //dies
-                
+                Destroy(gameObject);
                 break;
-            
+
             case "hunger":
-                SpringJoint2D[] temp = this.GetComponentsInChildren<SpringJoint2D>();
-                Debug.Log("Joint count: " + temp.Length);
-                for (int i = 0; i < temp.Length; i++)
+                SpringJoint2D[] joints = GetComponentsInChildren<SpringJoint2D>();
+                for (int i = 0; i < joints.Length; i++)
                 {
-                    if (UnityEngine.Random.Range(0f,1f) > 0.5f)
-                    {
-                        temp[i].enabled = false;
-                    }
+                    if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                        joints[i].enabled = false;
                 }
                 actionController.alive = false;
                 break;
-            
+
             case "OoB":
-                
                 break;
         }
-        
-        //This is a great example of a magic number and is purely there for demonstrative reasons
-        //Time.timeScale = 0.3f;
+
         gameOver = true;
         StartCoroutine(waitOnReload());
     }
 
-    void slimeFall(float phoneXValue) 
+    void slimeFall(float phoneXValue)
     {
-        if(phoneXValue > 0){ // If phone is leaning right move slime right
+        if (phoneXValue > 0)
+        {
             slimeRigidbody.AddForce(Vector2.right * phoneXValue * forceSize);
         }
-        if(phoneXValue < 0){ // If phone is leaning left move slime right
-            slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);
+        else if (phoneXValue < 0)
+        {
+            slimeRigidbody.AddForce(Vector2.left * Mathf.Abs(phoneXValue) * forceSize);
         }
     }
-    
+
     IEnumerator waitOnReload()
     {
-        //Watch this incredible        magic       number
-        yield return new WaitForSeconds(10/Time.timeScale);
+        yield return new WaitForSeconds(10 / Time.timeScale);
         Time.timeScale = 1;
         gameOver = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    // --- New for face logic ---
     public int GetSatiety()
     {
         return satiety;
@@ -130,5 +115,4 @@ public class Slime : MonoBehaviour
     {
         return maxSatiety;
     }
-
 }

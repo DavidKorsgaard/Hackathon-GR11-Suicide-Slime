@@ -67,6 +67,14 @@ public class Food : MonoBehaviour
         }
     }
 
+
+    // Add this method to check if the food is being dragged
+    public bool IsDragging()
+    {
+        return isDragging;
+    }
+
+
     /*void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("OnCollisionEnter2D called with: " + collision.collider.name);
@@ -79,7 +87,7 @@ public class Food : MonoBehaviour
         }
 
     }*/
-    
+
     //public virtual void ChangeSlimeColor(Slime slime) { }
 }
 
