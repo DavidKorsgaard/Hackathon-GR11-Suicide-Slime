@@ -1,4 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
 
 public class ShrinkSoundController : MonoBehaviour
 {
@@ -10,6 +14,8 @@ public class ShrinkSoundController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        Invoke("WaitOnReload", 12f);
+        
     }
 
     // Call this at the *start* of the shrink animation
@@ -24,5 +30,9 @@ public class ShrinkSoundController : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.PlayOneShot(popSound);
+    }
+    public void WaitOnReload()
+    {
+        SceneManager.LoadScene(0);
     }
 }

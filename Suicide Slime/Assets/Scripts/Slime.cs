@@ -16,7 +16,9 @@ public class Slime : MonoBehaviour
     [SerializeField] private float forceSize = 30f;
     Rigidbody2D slimeRigidbody;
     private bool gameOver;
+    private bool controller;
     private ActionController actionController;
+
     
     void Start()
     {
@@ -89,6 +91,8 @@ public class Slime : MonoBehaviour
                     }
                 }
                 actionController.alive = false;
+                StartCoroutine(WaitOnHunger());
+                controller = false;
                 break;
             
             case "OoB":
@@ -99,7 +103,12 @@ public class Slime : MonoBehaviour
         //This is a great example of a magic number and is purely there for demonstrative reasons
         //Time.timeScale = 0.3f;
         gameOver = true;
-        StartCoroutine(waitOnReload());
+        if (controller)
+        {
+            StartCoroutine(waitOnReload());
+        }
+        
+        
     }
 
     void slimeFall(float phoneXValue) 
@@ -111,14 +120,21 @@ public class Slime : MonoBehaviour
             slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);
         }
     }
-    
+    IEnumerator WaitOnHunger()
+    {
+        yield return new WaitForSeconds(8 / Time.timeScale);
+        Time.timeScale = 1;
+        gameOver = false;
+        SceneManager.LoadScene(0);
+    }
+
     IEnumerator waitOnReload()
     {
         //Watch this incredible        magic       number
-        yield return new WaitForSeconds(10/Time.timeScale);
+        yield return new WaitForSeconds(1/Time.timeScale);
         Time.timeScale = 1;
         gameOver = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 
     public int GetSatiety()

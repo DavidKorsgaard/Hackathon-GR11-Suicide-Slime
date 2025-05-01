@@ -10,7 +10,14 @@ public class InputManager : MonoBehaviour
     public static event Action<float> onGravityApply; // Public instance so other classes can apply methods to action event
     void Start()
     {
-        SensorStartCheck(); // Reenables sensor in case the system has not registered it yet
+        SensorCheck();
+        enabled = false;
+        Invoke("Enabler", 1.5f);
+
+    }
+    void Enabler()
+    {
+        enabled = true;
     }
 
     void Update()
@@ -26,12 +33,7 @@ public class InputManager : MonoBehaviour
         ApplyGravity(); // In fixedupdate because it's going to handle physics 
     }
 
-    IEnumerator SensorStartCheck()  // IEnumerator is returntype
-    {
-        yield return new WaitForSeconds(3f); // Returns coroutine and waits three second before checking if sensor is enabled
-        SensorCheck();
-    }
-
+    
     void SensorCheck(){ //Checks if sensor is null. Otherwise enables sensor.
         if (GravitySensor.current != null)
         {
