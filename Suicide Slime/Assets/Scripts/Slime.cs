@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 
 public class Slime : MonoBehaviour
@@ -11,7 +12,9 @@ public class Slime : MonoBehaviour
     [SerializeField] private float hungerRate =1;
     private float hungerTime;
     private float forceSize = 30f;
-    Rigidbody2D slimeRigidbody;    
+    Rigidbody2D slimeRigidbody;
+    private bool gameOver;
+    
     void Start()
     {
         Debug.Log("Slime Start");
@@ -34,7 +37,16 @@ public class Slime : MonoBehaviour
         if (satiety <= 0)
         {
             Debug.Log("Slime dead");
-            KillSlime("lmao");
+            KillSlime("hunter");
+        }
+
+        if (gameOver)
+        {
+            if (1==1)
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 
@@ -52,8 +64,23 @@ public class Slime : MonoBehaviour
 
     public virtual void KillSlime(string deathType)
     {
+        switch (deathType)
+        {
+            case "lmao":
+                //dies
+                Destroy(gameObject);
+                break;
+            
+            case "hunger":
+                break;
+            
+            case "OoB":
+                break;
+        }
         
-        Destroy(gameObject);
+        //This is a great example of a magic number and is purely one for demonstrative reasons
+        Time.timeScale = 0.3f;
+        gameOver = true;
     }
 
     void slimeFall(float phoneXValue) 
