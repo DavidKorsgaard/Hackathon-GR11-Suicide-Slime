@@ -121,29 +121,3 @@ public class Slime : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
-
-public class GroundCheck : MonoBehaviour
-{
-    public float groundDistance = 0.1f; // Distance to check for ground
-    public LayerMask groundLayer; // Layer to check against
-
-    void Update()
-    {
-        if (IsGrounded())
-        {
-            // Your logic when the character is grounded
-            Debug.Log("Grounded");
-        }
-        else
-        {
-            // Your logic when the character is not grounded
-            Debug.Log("Not Grounded");
-        }
-    }
-
-    bool IsGrounded()
-    {
-        // Cast a ray downwards from the character's position
-        return Physics.Raycast(transform.position, Vector3.down, groundDistance, groundLayer);
-    }
-}
