@@ -27,7 +27,7 @@ public class GroundCheck : MonoBehaviour
         }
 
         wasGrounded = isGrounded;
-        Debug.Log("Grounded state: " + isGrounded);
+        
     }
 
     bool IsGrounded()
