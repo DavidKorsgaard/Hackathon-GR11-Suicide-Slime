@@ -337,27 +337,6 @@ Transform:
   - {fileID: 1646485893}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &565188949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3682312347621767007, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
-  m_PrefabInstance: {fileID: 1020748049}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &565188961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565188949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59a505b1b60cc1f4b86921724cf33138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnFoodFace: {fileID: 0}
-  dragFoodFace: {fileID: 0}
-  sadFace: {fileID: 0}
-  happyFace: {fileID: 0}
 --- !u!1 &609363059
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,10 +732,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3682312347621767007, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 565188961}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
 --- !u!1 &1087402915
 GameObject:
@@ -1488,7 +1464,7 @@ MonoBehaviour:
   dialogueLines:
   - Hey man, thanks for taking care of my slime
   - Just feed it some food, and remember to turn the phone so it doesnt fall off
-  - its very fragile so dont let it fall
+  - Its very fragile so dont let it fall
 --- !u!4 &1896508264
 Transform:
   m_ObjectHideFlags: 0
@@ -1672,7 +1648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3600120320143092137, guid: 5b8b03f7fd67e254cb5e595e13374ca6, type: 3}
       propertyPath: spawnInterval
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5329681209323303830, guid: 5b8b03f7fd67e254cb5e595e13374ca6, type: 3}
       propertyPath: m_LocalPosition.x
