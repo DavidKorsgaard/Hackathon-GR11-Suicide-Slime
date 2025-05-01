@@ -19,8 +19,17 @@ public class ActionController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D on the cube
-        StartCoroutine(RandomActions());  // Start random action loop
+
+        StartCoroutine(DelayedStart());
     }
+
+    IEnumerator DelayedStart()
+    {
+        yield return new WaitForSeconds(4f);
+        StartCoroutine(RandomActions());
+    }
+
+
     void MoveLeft()
      {
         rb.AddForce(Vector3.left * moveSpeed, ForceMode2D.Impulse); // Change the objects linear velocity on x-axis to move left when method is called
@@ -55,8 +64,8 @@ public class ActionController : MonoBehaviour
         {
             List<System.Action> actions = new List<System.Action>  // List of methods (actions) to called
             {
-                //MoveLeft,
-                //MoveRight,
+                MoveLeft,
+                MoveRight,
                 //JumpUp,
                 JumpRight,
                 JumpLeft
