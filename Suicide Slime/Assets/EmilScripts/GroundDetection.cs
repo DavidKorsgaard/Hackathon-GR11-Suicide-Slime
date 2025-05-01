@@ -6,7 +6,7 @@ public class GroundDetection : MonoBehaviour
 
     private void Start()
     {
-        actionController = GetComponent<ActionController>();
+        actionController = GetComponentInParent<ActionController>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)  //Runs on attched gameobjects collision

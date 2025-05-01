@@ -76,9 +76,9 @@ public class ActionController : MonoBehaviour
         {
             List<System.Action> actions = new List<System.Action>
             {
-                MoveLeft,
-                MoveRight,
-                JumpUp,
+               // MoveLeft,
+                //MoveRight,
+                //JumpUp,
                 JumpRight,
                 JumpLeft
             };
@@ -103,16 +103,6 @@ public class ActionController : MonoBehaviour
             T temp = list[i];
             list[i] = list[rand];
             list[rand] = temp;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (lastAction == JumpLeft || lastAction == JumpRight || lastAction == JumpUp)
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = 0f;
-            Debug.Log("Stopped After Jumping");
         }
     }
 
