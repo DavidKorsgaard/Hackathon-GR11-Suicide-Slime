@@ -7,13 +7,18 @@ public class Food : MonoBehaviour
     private bool isDragging = false;
     private Vector3 offset;
     private Rigidbody2D rb;
+    private Collider2D collider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         if (GetComponent<Collider2D>() == null)
         {
-            gameObject.AddComponent<BoxCollider2D>(); // Add Collider2D component if not already present
+            collider = gameObject.AddComponent<CircleCollider2D>(); // Add Collider2D component if not already present
+        }
+        else
+        {
+            collider = GetComponent<Collider2D>();
         }
         //Dunno why we would want it to be trigger. Change if needed -B
         //GetComponent<Collider2D>().isTrigger = true;
@@ -27,10 +32,12 @@ public class Food : MonoBehaviour
             mousePosition.z = 0;
             transform.position = mousePosition + offset;
             rb.bodyType = RigidbodyType2D.Kinematic; // Disable gravity while dragging
+            collider.enabled = false;
         }
         else
         {
             rb.bodyType = RigidbodyType2D.Dynamic; // Enable gravity when not dragging
+            collider.enabled = true;
         }
     }
 
@@ -45,11 +52,22 @@ public class Food : MonoBehaviour
     void OnMouseUp()
     {
         isDragging = false;
-        //CheckIfFedToSlime();
+        CheckIfFedToSlime();
+    }
+    
+    void CheckIfFedToSlime()
+    {
+        CircleCollider2D slimeCollider = FindObjectOfType<Slime>().GetComponent<CircleCollider2D>();
+        if (slimeCollider.bounds.Contains(transform.position))
+        {
+            Slime slime = slimeCollider.GetComponent<Slime>();
+            slime.FeedSlime(foodColor, nutritionalValue);
+            gameObject.SetActive(false);
+            FindObjectOfType<FoodPool>().ReturnToPool(gameObject);
+        }
     }
 
-
-    void OnCollisionEnter2D(Collision2D collision)
+    /*void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("OnCollisionEnter2D called with: " + collision.collider.name);
         if (collision.collider.CompareTag("Slime"))
@@ -60,22 +78,9 @@ public class Food : MonoBehaviour
             FindAnyObjectByType<FoodPool>().ReturnToPool(gameObject);
         }
 
-    }
-    
-    public virtual void ChangeSlimeColor(Slime slime) { }
-    
-    /*void CheckIfFedToSlime()
-    {
-        Collider2D slimeCollider = FindObjectOfType<Slime>().GetComponent<Collider2D>();
-        if (slimeCollider.bounds.Contains(transform.position))
-        {
-            Slime slime = slimeCollider.GetComponent<Slime>();
-            slime.FeedSlime(foodColor, nutritionalValue);
-            gameObject.SetActive(false);
-            FindObjectOfType<FoodPool>().ReturnToPool(gameObject);
-        }
     }*/
     
+    //public virtual void ChangeSlimeColor(Slime slime) { }
 }
 
 /*
