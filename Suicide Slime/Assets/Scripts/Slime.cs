@@ -9,12 +9,15 @@ public class Slime : MonoBehaviour
     private SpriteShapeRenderer spriteRenderer;
     [SerializeField] private float hungerRate =1;
     private float hungerTime;
-    
+    private float forceSize = 100f;
+    Rigidbody2D slimeRigidbody;    
     void Start()
     {
         Debug.Log("Slime Start");
         satiety = maxSatiety;
         spriteRenderer = GetComponentInChildren<SpriteShapeRenderer>();
+        InputManager.onGravityApply += slimeFall;
+        slimeRigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -50,5 +53,17 @@ public class Slime : MonoBehaviour
     {
         
         Destroy(gameObject);
+    }
+
+    void slimeFall(float phoneXValue)
+    {
+        if(phoneXValue > 0){
+            Debug.Log("right");
+            slimeRigidbody.AddForce(Vector2.right * forceSize);
+        }
+        if(phoneXValue < 0){
+            Debug.Log("left");
+            slimeRigidbody.AddForce(Vector2.left * forceSize);
+        }
     }
 }

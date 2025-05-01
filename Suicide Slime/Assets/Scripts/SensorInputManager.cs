@@ -5,10 +5,9 @@ using UnityEngine.InputSystem;
 //using Gyroscope = UnityEngine.InputSystem.Gyroscope; Use this if you need to use gyroscope.
 public class InputManager : MonoBehaviour
 {
-    public Vector3 gravityOrientation; // Orientation of mobile device relative to gravity
+    public Vector3 gravityOrientationRawData; // Orientation of mobile device relative to gravity
     public double rotationCutOffLimit = 0.6; // Cut off limit for when the slime shold be applied a force
-    public delegate void OnGravityApply(); // Delegate type for triggering gravity to be applied
-    public static event OnGravityApply onGravityApply; // Public instance so other classes can apply methods to event delegate
+    public static event Action<float> onGravityApply; // Public instance so other classes can apply methods to action event
     void Start()
     {
         EnableSensor(); // Enables sensor
@@ -20,11 +19,9 @@ public class InputManager : MonoBehaviour
     {
         SensorCheck();
 
-        gravityOrientation = GravitySensor.current.gravity.ReadValue(); 
+        gravityOrientationRawData = GravitySensor.current.gravity.ReadValue(); 
         // Gravity is equal to gravity sensor. 
         // The value (0, -1, 0) would be the same as holding the phone perfectly upright in your hand.
-
-        Debug.Log(gravityOrientation);
     }
 
     void FixedUpdate(){
@@ -53,11 +50,13 @@ public class InputManager : MonoBehaviour
 
     void ApplyGravity(){ // Calling event delegate
 
-        float orientation = Math.Abs(gravityOrientation.x);
+        float orientationXValue = Math.Abs(gravityOrientationRawData.x);
+        // The rotation of holding phone vertically. 
+        // Whole number so it accounts for the phone in both directions.
+        float phoneXValue = gravityOrientationRawData.x;
 
-        if(orientation < rotationCutOffLimit){
-            onGravityApply?.Invoke();
+        if(orientationXValue > rotationCutOffLimit){
+            onGravityApply?.Invoke(phoneXValue);
         }
     }
-
 }
