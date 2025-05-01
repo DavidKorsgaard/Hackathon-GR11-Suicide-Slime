@@ -6,7 +6,8 @@ using UnityEngine;
 public class ActionController : MonoBehaviour
 {
     private Rigidbody2D rb; //Variable rb of type Rigidbody2D is used to manipulate physics of the object
-
+    public bool alive = true;
+    
     private System.Action lastAction;
 
     //SerializeField is used so we can adjust the values in the unity inspector
@@ -55,7 +56,7 @@ public class ActionController : MonoBehaviour
 
     IEnumerator RandomActions()    //Courentine that runs a random set of actions with a delay between each
     {
-        while (true)
+        while (alive)
         {
             List<System.Action> actions = new List<System.Action>  // List of methods (actions) to called
             {

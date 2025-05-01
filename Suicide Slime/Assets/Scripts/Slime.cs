@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
+using Random = System.Random;
 
 public class Slime : MonoBehaviour
 {
@@ -9,16 +11,18 @@ public class Slime : MonoBehaviour
     [SerializeField] private int maxSatiety;
     private int satiety;
     private SpriteShapeRenderer spriteRenderer;
-    [SerializeField] private float hungerRate =1;
+    [SerializeField] private float hungerRate =1; /* s/nutrient */
     private float hungerTime;
     private float forceSize = 30f;
     Rigidbody2D slimeRigidbody;
     private bool gameOver;
+    private ActionController actionController;
     
     void Start()
     {
         Debug.Log("Slime Start");
         satiety = maxSatiety;
+        actionController = GetComponent<ActionController>();
         spriteRenderer = GetComponentInChildren<SpriteShapeRenderer>();
         InputManager.onGravityApply += slimeFall;
         slimeRigidbody = GetComponent<Rigidbody2D>();
@@ -26,26 +30,20 @@ public class Slime : MonoBehaviour
 
     void Update()
     {
-        hungerTime += Time.deltaTime;
-        if (hungerTime >= hungerRate)
+        if (!gameOver)
         {
-            hungerTime -= hungerRate;
-            satiety--;
-            Debug.Log("Satiety: " + satiety);
-        }
-
-        if (satiety <= 0)
-        {
-            Debug.Log("Slime dead");
-            KillSlime("hunter");
-        }
-
-        if (gameOver)
-        {
-            if (1==1)
+            hungerTime += Time.deltaTime;
+            if (hungerTime >= hungerRate)
             {
-                Time.timeScale = 1;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                hungerTime -= hungerRate;
+                satiety--;
+                Debug.Log("Satiety: " + satiety);
+            }
+
+            if (satiety <= 0)
+            {
+                Debug.Log("Slime dead");
+                KillSlime("hunger");
             }
         }
     }
@@ -72,15 +70,27 @@ public class Slime : MonoBehaviour
                 break;
             
             case "hunger":
+                SpringJoint2D[] temp = this.GetComponentsInChildren<SpringJoint2D>();
+                Debug.Log("Joint count: " + temp.Length);
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (UnityEngine.Random.Range(0f,1f) > 0.5f)
+                    {
+                        temp[i].enabled = false;
+                    }
+                }
+                actionController.alive = false;
                 break;
             
             case "OoB":
+                
                 break;
         }
         
-        //This is a great example of a magic number and is purely one for demonstrative reasons
-        Time.timeScale = 0.3f;
+        //This is a great example of a magic number and is purely there for demonstrative reasons
+        //Time.timeScale = 0.3f;
         gameOver = true;
+        StartCoroutine(waitOnReload());
     }
 
     void slimeFall(float phoneXValue)
@@ -95,5 +105,14 @@ public class Slime : MonoBehaviour
             slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);
             //Debug.Log(Vector2.left * (1 - phoneXValue) * forceSize);
         }
+    }
+    
+    IEnumerator waitOnReload()
+    {
+        //Watch this incredible        magic       number
+        yield return new WaitForSeconds(10/Time.timeScale);
+        Time.timeScale = 1;
+        gameOver = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
