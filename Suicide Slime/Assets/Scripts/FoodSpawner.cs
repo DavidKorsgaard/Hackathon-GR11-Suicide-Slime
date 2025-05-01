@@ -4,8 +4,7 @@ public class FoodSpawner : MonoBehaviour
 {
     public FoodPool foodPool;
     public float spawnInterval = 5f;
-
-    // Define boundaries for spawning food
+    public FaceManager faceManager; // Reference to FaceManager
     public float minX = -5f;
     public float maxX = 5f;
     public float minY = -5f;
@@ -23,6 +22,7 @@ public class FoodSpawner : MonoBehaviour
         {
             food.transform.position = GetRandomPosition();
             food.SetActive(true);
+            faceManager.ShowSpawnFoodFace(); // Notify FaceManager
         }
     }
 

@@ -7,6 +7,9 @@ public class FaceManager : MonoBehaviour
     public GameObject sadFace;
     public GameObject happyFace;
     private Slime slime;
+    private bool showSpawnFoodFace = false;
+    private float spawnFoodFaceTimer = 0f;
+    public float spawnFoodFaceDuration = 1f; // Duration to show spawnFoodFace
 
     void Start()
     {
@@ -20,15 +23,40 @@ public class FaceManager : MonoBehaviour
 
     void UpdateFace()
     {
-        if (FoodBeingDragged())
+        if (showSpawnFoodFace)
+        {
+            spawnFoodFaceTimer += Time.deltaTime;
+            if (spawnFoodFaceTimer >= spawnFoodFaceDuration)
+            {
+                showSpawnFoodFace = false;
+                spawnFoodFaceTimer = 0f;
+                ActivateFaceBasedOnSatiety();
+            }
+            else
+            {
+                ActivateFace(spawnFoodFace);
+            }
+        }
+        else if (FoodBeingDragged())
         {
             ActivateFace(dragFoodFace);
         }
-        else if (FoodInScene())
+        else
         {
-            ActivateFace(spawnFoodFace);
+            ActivateFaceBasedOnSatiety();
         }
-        else if (slime.GetSatiety() < slime.GetMaxSatiety() / 2)
+    }
+
+    public void ShowSpawnFoodFace()
+    {
+        showSpawnFoodFace = true;
+        spawnFoodFaceTimer = 0f;
+        ActivateFace(spawnFoodFace);
+    }
+
+    void ActivateFaceBasedOnSatiety()
+    {
+        if (slime.GetSatiety() < slime.GetMaxSatiety() / 2)
         {
             ActivateFace(sadFace);
         }
@@ -36,11 +64,6 @@ public class FaceManager : MonoBehaviour
         {
             ActivateFace(happyFace);
         }
-    }
-
-    bool FoodInScene()
-    {
-        return FindObjectOfType<Food>() != null;
     }
 
     bool FoodBeingDragged()
