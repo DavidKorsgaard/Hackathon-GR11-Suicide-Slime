@@ -57,7 +57,9 @@ public class Slime : MonoBehaviour
             satiety = maxSatiety;
         }
         Debug.Log("New Satiety: " + satiety);
+        color.a = 0.647f;
         spriteRenderer.color = color;
+
     }
 
     public virtual void KillSlime(string deathType)
