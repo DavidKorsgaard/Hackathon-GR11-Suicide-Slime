@@ -64,9 +64,9 @@ public class ActionController : MonoBehaviour
         {
             List<System.Action> actions = new List<System.Action>  // List of methods (actions) to called
             {
-                MoveLeft,
-                MoveRight,
-                //JumpUp,
+                //MoveLeft,
+                //MoveRight,
+                JumpUp,
                 JumpRight,
                 JumpLeft
             };
