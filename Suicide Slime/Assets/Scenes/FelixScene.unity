@@ -710,6 +710,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5543087822233436355, guid: 76aa2a5cbadcc274e84d9d00f471830b, type: 3}
+      propertyPath: soundList.Array.data[6].name
+      value: LAND
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543087822233436355, guid: 76aa2a5cbadcc274e84d9d00f471830b, type: 3}
+      propertyPath: soundList.Array.data[6].sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
