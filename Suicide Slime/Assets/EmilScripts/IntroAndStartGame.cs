@@ -7,6 +7,7 @@ public class IntroAndStartGame : MonoBehaviour
 {
     [SerializeField] TMP_Text dialogueText;         //Textbox for intro text
     [SerializeField] GameObject startOverlay;       //Object that says tap to start
+    [SerializeField] GameObject tap_tekst;
 
     [TextArea]                                  //Makes it easy to edit text in Unity
     [SerializeField] string[] dialogueLines;    //Array og strings each for a line of dialogue
@@ -18,7 +19,7 @@ public class IntroAndStartGame : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0f;                //Pauses entire game 
-        startOverlay.SetActive(false);      //Hides "Tap to start" until dialogue is done
+        tap_tekst.SetActive(false);      //Hides "Tap to start" until dialogue is done
         ShowNextDialogueLine();             //Starts dialogue
     }
 
@@ -46,14 +47,15 @@ public class IntroAndStartGame : MonoBehaviour
         {
             dialogueFinished = true;                          
             dialogueText.text = "";                           //When dialogue is finished no text will appear
-            startOverlay.SetActive(true);                     //Overlay for "Tap to start" is set to active
+            tap_tekst.SetActive(true);                    //Overlay for "Tap to start" is set to active
         }
     }
 
     void StartGame()
     {
         Time.timeScale = 1f;                //Unpauses game
-        gameStarted = true;                 
+        gameStarted = true;
+        tap_tekst.SetActive(true);
         startOverlay.SetActive(false);      //Hide UI elements
     }
 }
