@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public Vector3 gravityOrientationRawData; // Orientation of mobile device relative to gravity
-    public double rotationCutOffLimit = 0.6; // Cut off limit for when the slime shold be applied a force
+    public double rotationCutOffLimit = 0.3; // Cut off limit for when the slime shold be applied a force
     public static event Action<float> onGravityApply; // Public instance so other classes can apply methods to action event
     void Start()
     {
