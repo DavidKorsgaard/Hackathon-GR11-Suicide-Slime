@@ -9,7 +9,8 @@ public enum SoundType
     HUNGRY,
     JUMP,
     DEATH,
-    SLIME
+    SLIME,
+    BACKGROUND
 
 
 }
