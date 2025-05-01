@@ -729,10 +729,50 @@ PrefabInstance:
       propertyPath: m_Distance
       value: 0.46324578
       objectReference: {fileID: 0}
+    - target: {fileID: 355400930201974217, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: SadSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 355400930201974217, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: HappySounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 355400930201974217, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: HungrySounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 355400930201974217, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'SadSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a20d6d32657a94a3286236e9f3cc41f0, type: 3}
+    - target: {fileID: 355400930201974217, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'SadSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: cd9e8babf8dee4b3ca34c31cbf5cf45e, type: 3}
+    - target: {fileID: 355400930201974217, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'HappySounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c97ab4f53b3440178c0ea6f1cffe04a, type: 3}
+    - target: {fileID: 355400930201974217, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'HungrySounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: aabc98e1f3ec54e3b94a9a6f93fe123a, type: 3}
     - target: {fileID: 1423166423005064651, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: m_Distance
       value: 0.5562229
       objectReference: {fileID: 0}
+    - target: {fileID: 1425703364644408208, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: groundAudioClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425703364644408208, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'groundAudioClips.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ff3271e6a5ade465481bf263a3cea466, type: 3}
+    - target: {fileID: 1425703364644408208, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'groundAudioClips.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ff3271e6a5ade465481bf263a3cea466, type: 3}
     - target: {fileID: 1679424932383853237, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: m_Distance
       value: 0.48023435
@@ -870,9 +910,29 @@ PrefabInstance:
       value: 0.459
       objectReference: {fileID: 0}
     - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: jumpForce
+      value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: JumpSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'JumpSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 55de9bd7959804dcc873207acbd36269, type: 3}
+    - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'JumpSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fb0533ce22f042deb61660afc9a9d31, type: 3}
+    - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: 'JumpSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f2068d0a37ac4765848f90490758eaa, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

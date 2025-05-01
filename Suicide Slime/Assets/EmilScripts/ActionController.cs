@@ -16,8 +16,12 @@ public class ActionController : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float delayBetweenActions = 5f;
 
+    public AudioClip[] JumpSounds;
+    private AudioSource audioSource; // Audio source component
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D on the cube
 
         StartCoroutine(DelayedStart());
@@ -70,8 +74,18 @@ public class ActionController : MonoBehaviour
                 JumpRight,
                 JumpLeft
             };
-
-            Shuffle(actions);                            //Shuffles list randomly with the Shuffle<T>() method
+            if (JumpSounds.Length > 0)
+            {
+                int randomIndex = Random.Range(0, JumpSounds.Length);
+                Debug.Log("Playing audio clip: " + JumpSounds[randomIndex].name);
+                audioSource.PlayOneShot(JumpSounds[randomIndex]);
+            }
+            else
+            {
+                Debug.LogWarning("No audio clips assigned to groundAudioClips array.");
+            }
+            Shuffle(actions);     
+            //Shuffles list randomly with the Shuffle<T>() method
 
             foreach (var action in actions)              //Loops through the shuffled actions
             {

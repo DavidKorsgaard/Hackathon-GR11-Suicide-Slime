@@ -34,7 +34,7 @@ public class GroundCheck : MonoBehaviour
     {
         // Check if the Circle Collider is touching the ground layer
         bool hitGround = circleCollider.IsTouchingLayers(groundLayer);
-        Debug.Log("CircleCollider2D hit ground: " + hitGround);
+        
         return hitGround;
     }
 

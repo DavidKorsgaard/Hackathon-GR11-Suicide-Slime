@@ -10,9 +10,15 @@ public class FaceManager : MonoBehaviour
     private bool showSpawnFoodFace = false;
     private float spawnFoodFaceTimer = 0f;
     public float spawnFoodFaceDuration = 1f; // Duration to show spawnFoodFace
+    public AudioClip[] HappySounds;
+    public AudioClip[] SadSounds;
+    public AudioClip[] HungrySounds;
+
+    private AudioSource audioSource; // Audio source component
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         slime = FindObjectOfType<Slime>();
     }
 
@@ -35,15 +41,19 @@ public class FaceManager : MonoBehaviour
             else
             {
                 ActivateFace(spawnFoodFace);
+
             }
+            
         }
         else if (FoodBeingDragged())
         {
             ActivateFace(dragFoodFace);
+           
         }
         else
         {
             ActivateFaceBasedOnSatiety();
+            
         }
     }
 

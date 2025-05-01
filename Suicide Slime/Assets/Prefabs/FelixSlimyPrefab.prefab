@@ -1647,6 +1647,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 15c997e2be30848aaac6aa9d265ca467, type: 3}
   - {fileID: 8300000, guid: d12dc15fe2cc64cd382c54a4ef8cc9fd, type: 3}
   - {fileID: 8300000, guid: ff3271e6a5ade465481bf263a3cea466, type: 3}
+  - {fileID: 8300000, guid: a4a4d5342cbd64650b26fa1e1ffa42a4, type: 3}
+  - {fileID: 8300000, guid: a1d387569fbc9439cb107e0ecd65d668, type: 3}
   circleCollider: {fileID: 732262931975810756}
 --- !u!82 &5363792425478225870
 AudioSource:
