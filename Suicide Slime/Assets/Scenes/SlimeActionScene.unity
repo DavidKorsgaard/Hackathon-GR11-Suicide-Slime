@@ -669,12 +669,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 701346225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48d947e4735c4d74c89dc378e9d125ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fef0057c85c6ce4780aa6a205d782de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 15
-  moveSpeed: 15
-  jumpSpeed: 5
+  jumpForce: 40
+  moveSpeed: 5
+  jumpSpeed: 0.8
   delayBetweenActions: 5
 --- !u!1 &764330175
 GameObject:
