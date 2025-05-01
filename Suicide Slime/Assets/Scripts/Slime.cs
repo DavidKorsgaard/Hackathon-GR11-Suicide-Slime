@@ -48,6 +48,11 @@ public class Slime : MonoBehaviour
                 KillSlime("hunger");
             }
         }
+
+        if (transform.position.y < -10)
+        {
+            KillSlime("OoB");
+        }
     }
 
     public void FeedSlime(Color color, int nutrition)
@@ -70,7 +75,7 @@ public class Slime : MonoBehaviour
         {
             case "lmao":
                 //dies
-                Destroy(gameObject);
+                
                 break;
             
             case "hunger":
