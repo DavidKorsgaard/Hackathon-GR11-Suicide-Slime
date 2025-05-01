@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
@@ -10,7 +11,7 @@ public class Slime : MonoBehaviour
     private SpriteShapeRenderer spriteRenderer;
     [SerializeField] private float hungerRate =1;
     private float hungerTime;
-    private float forceSize = 100f;
+    private float forceSize = 30f;
     Rigidbody2D slimeRigidbody;
     private bool gameOver;
     
@@ -85,12 +86,14 @@ public class Slime : MonoBehaviour
     void slimeFall(float phoneXValue)
     {
         if(phoneXValue > 0){
-            Debug.Log("right");
-            slimeRigidbody.AddForce(Vector2.right * forceSize);
+            //Debug.Log("right");
+            slimeRigidbody.AddForce(Vector2.right * phoneXValue * forceSize);
+            //Debug.Log(Vector2.right * (1 - phoneXValue) * forceSize);
         }
         if(phoneXValue < 0){
-            Debug.Log("left");
-            slimeRigidbody.AddForce(Vector2.left * forceSize);
+            //Debug.Log("left");
+            slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);
+            //Debug.Log(Vector2.left * (1 - phoneXValue) * forceSize);
         }
     }
 }
