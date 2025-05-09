@@ -146,6 +146,7 @@ public class Slime : MonoBehaviour
         Time.timeScale = 1;
         gameOver = false;
         InputSystem.DisableDevice(GravitySensor.current);
+        InputManager.onGravityApply -= slimeFall;
         SceneManager.LoadScene(0);
     }
 
@@ -163,7 +164,7 @@ public class Slime : MonoBehaviour
         yield return new WaitForSeconds(13/Time.timeScale);
         gameOver = false;
         InputSystem.DisableDevice(GravitySensor.current);
-
+        InputManager.onGravityApply -= slimeFall;
         SceneManager.LoadScene(0);
     }
 
