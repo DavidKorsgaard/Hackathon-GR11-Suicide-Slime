@@ -1,12 +1,23 @@
 # ninja log v5
+9	2165	7678267987171906	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f8903f0055aa70eb
 71	497	7678267970540178	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	10ddba5af61f5df7
 499	728	7678267972859445	C:/Users/David/Documents/Github/Hackathon-GR2-Suicide-Slime/Suicide Slime/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4p4h2f1o/obj/arm64-v8a/libswappywrapper.so	4aa9b926031a5531
 61	1784	7678267983341203	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	b50230c41e2bb145
 24	1814	7678267983658296	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	ffd576c7176cf62d
-1	1839	7678267983905086	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	41f1c10b667de085
-41	1849	7678267984023707	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9ba1e136670d79f9
-17	1913	7678267984658379	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	862a784a1ecb9612
 50	1918	7678267984698992	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	82dd6b484e96e33b
+1	1839	7678267983905086	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	41f1c10b667de085
+17	1913	7678267984658379	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	862a784a1ecb9612
+41	1849	7678267984023707	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9ba1e136670d79f9
 33	2083	7678267986381014	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	14031bfa26c9d735
-9	2165	7678267987171906	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f8903f0055aa70eb
 2166	2319	7678267988769212	C:/Users/David/Documents/Github/Hackathon-GR2-Suicide-Slime/Suicide Slime/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4p4h2f1o/obj/arm64-v8a/libgame.so	425772ef0b6f8ec5
+92	805	7678385469078459	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	10ddba5af61f5df7
+806	1147	7678385472524950	C:/Users/David/Documents/Github/Hackathon-GR2-Suicide-Slime/Suicide Slime/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4p4h2f1o/obj/arm64-v8a/libswappywrapper.so	4aa9b926031a5531
+51	2750	7678385488523251	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	b50230c41e2bb145
+60	2771	7678385488720538	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	ffd576c7176cf62d
+25	2793	7678385488968719	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	41f1c10b667de085
+68	2805	7678385489076358	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	9ba1e136670d79f9
+16	2870	7678385489746694	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	862a784a1ecb9612
+78	2880	7678385489857789	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	82dd6b484e96e33b
+43	3057	7678385491618359	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	14031bfa26c9d735
+35	3157	7678385492628150	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f8903f0055aa70eb
+3158	3317	7678385494267188	C:/Users/David/Documents/Github/Hackathon-GR2-Suicide-Slime/Suicide Slime/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4p4h2f1o/obj/arm64-v8a/libgame.so	425772ef0b6f8ec5

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using Random = System.Random;
@@ -14,12 +15,16 @@ public class Slime : MonoBehaviour
     [SerializeField] private float hungerRate =1; /* s/nutrient */
     private float hungerTime;
     [SerializeField] private float forceSize = 30f;
-    Rigidbody2D slimeRigidbody;
+    [SerializeField] Rigidbody2D slimeRigidbody;
     private bool gameOver;
-    private bool controller;
+    private bool controller = true;
     private ActionController actionController;
 
-    
+    void Awake()
+    {
+        slimeRigidbody = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
         Debug.Log("Slime Start");
@@ -27,7 +32,7 @@ public class Slime : MonoBehaviour
         actionController = GetComponent<ActionController>();
         spriteRenderer = GetComponentInChildren<SpriteShapeRenderer>();
         InputManager.onGravityApply += slimeFall; // slimeFall method is applied to onGravityApply action event
-        slimeRigidbody = GetComponent<Rigidbody2D>();
+        
 
 
     }
@@ -99,14 +104,22 @@ public class Slime : MonoBehaviour
                 
                 break;
         }
-        
+
         //This is a great example of a magic number and is purely there for demonstrative reasons
         //Time.timeScale = 0.3f;
-        gameOver = true;
-        if (controller)
+
+        if (controller == false)
+        {
+            StartCoroutine(WaitOnHunger());
+        }
+        else
         {
             StartCoroutine(waitOnReload());
         }
+            
+        
+        gameOver = true;
+        
         
         
     }
@@ -117,7 +130,7 @@ public class Slime : MonoBehaviour
             slimeRigidbody.AddForce(Vector2.right * phoneXValue * forceSize);
         }
         if(phoneXValue < 0){ // If phone is leaning left move slime right
-            slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);
+            slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);  
         }
     }
     IEnumerator WaitOnHunger()
@@ -125,6 +138,7 @@ public class Slime : MonoBehaviour
         yield return new WaitForSeconds(8 / Time.timeScale);
         Time.timeScale = 1;
         gameOver = false;
+        InputSystem.DisableDevice(GravitySensor.current);
         SceneManager.LoadScene(0);
     }
 
@@ -134,6 +148,7 @@ public class Slime : MonoBehaviour
         yield return new WaitForSeconds(1/Time.timeScale);
         Time.timeScale = 1;
         gameOver = false;
+        InputSystem.DisableDevice(GravitySensor.current);
         SceneManager.LoadScene(1);
     }
 

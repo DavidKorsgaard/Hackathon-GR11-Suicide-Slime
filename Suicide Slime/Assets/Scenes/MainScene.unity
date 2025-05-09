@@ -757,6 +757,10 @@ PrefabInstance:
       propertyPath: 'HungrySounds.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: aabc98e1f3ec54e3b94a9a6f93fe123a, type: 3}
+    - target: {fileID: 408797959142501637, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1423166423005064651, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: m_Distance
       value: 0.5562229
@@ -804,6 +808,10 @@ PrefabInstance:
     - target: {fileID: 3682312347621767007, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: m_Name
       value: FelixSlimyPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682312347621767007, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3707289497856947587, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: m_Distance
@@ -911,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: jumpForce
-      value: 35
+      value: 42.5
       objectReference: {fileID: 0}
     - target: {fileID: 9082512194284680009, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: m_Enabled
@@ -1665,10 +1673,7 @@ MonoBehaviour:
   dialogueText: {fileID: 2099141986}
   startOverlay: {fileID: 1849011377}
   tap_tekst: {fileID: 1087402915}
-  dialogueLines:
-  - Hey man, thanks for taking care of my slime
-  - Just feed it some food, and remember to turn the phone so it doesnt fall off
-  - Its very fragile so dont let it fall
+  dialogueLines: []
 --- !u!4 &1896508264
 Transform:
   m_ObjectHideFlags: 0
