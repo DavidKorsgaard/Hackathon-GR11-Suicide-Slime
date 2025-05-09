@@ -20,6 +20,13 @@ public class Slime : MonoBehaviour
     private bool controller = true;
     private ActionController actionController;
 
+    public GameObject slimeCanvas;
+    public GameObject fallingSlime;
+    public GameObject BackgorundSound;
+    public GameObject foodManager;
+    public GameObject table;
+    
+
     void Awake()
     {
         slimeRigidbody = GetComponent<Rigidbody2D>();
@@ -144,12 +151,20 @@ public class Slime : MonoBehaviour
 
     IEnumerator waitOnReload()
     {
+        table.SetActive(false);
+        slimeCanvas.SetActive(true);
+        fallingSlime.SetActive(true);
+        BackgorundSound.SetActive(false);
+        this.gameObject.SetActive(false);
+        foodManager.SetActive(false);
+
+        
         //Watch this incredible        magic       number
-        yield return new WaitForSeconds(1/Time.timeScale);
-        Time.timeScale = 1;
+        yield return new WaitForSeconds(13/Time.timeScale);
         gameOver = false;
         InputSystem.DisableDevice(GravitySensor.current);
-        SceneManager.LoadScene(1);
+
+        SceneManager.LoadScene(0);
     }
 
     public int GetSatiety()
