@@ -8,11 +8,10 @@ using Random = System.Random;
 
 public class Slime : MonoBehaviour
 {
-    //Mig der prøver at finde på det modsatte af hunger :(
     [SerializeField] private int maxSatiety;
     private int satiety;
     private SpriteShapeRenderer spriteRenderer;
-    [SerializeField] private float hungerRate =1; /* s/nutrient */
+    [SerializeField] private float hungerRate = 1; /* s/nutrient */
     private float hungerTime;
     [SerializeField] private float forceSize = 30f;
     [SerializeField] Rigidbody2D slimeRigidbody;
@@ -32,9 +31,6 @@ public class Slime : MonoBehaviour
         actionController = GetComponent<ActionController>();
         spriteRenderer = GetComponentInChildren<SpriteShapeRenderer>();
         InputManager.onGravityApply += slimeFall; // slimeFall method is applied to onGravityApply action event
-        
-
-
     }
 
     void Update()
@@ -51,7 +47,7 @@ public class Slime : MonoBehaviour
 
             if (satiety <= 0)
             {
-                Debug.Log("Slime dead");
+                Debug.Log("Slime dead from hunger");
                 KillSlime("hunger");
             }
         }
@@ -62,27 +58,41 @@ public class Slime : MonoBehaviour
         }
     }
 
-    public void FeedSlime(Color color, int nutrition)
+    public void UpdateSatiety(int nutrition)
     {
-        Debug.Log("Feed Slime!");
         satiety += nutrition;
         if (satiety > maxSatiety)
         {
             satiety = maxSatiety;
         }
         Debug.Log("New Satiety: " + satiety);
-        color.a = 0.647f;
-        spriteRenderer.color = color;
+    }
 
+    public void ChangeColor(Color color)
+    {
+        spriteRenderer.color = color;
+    }
+
+    public void FeedSlime(Color color, int nutrition)
+    {
+        Debug.Log("Feed Slime!");
+        UpdateSatiety(nutrition);
+        color.a = 0.647f;
+        ChangeColor(color);
     }
 
     public virtual void KillSlime(string deathType)
     {
+        if (gameOver)
+            return;
+            
+        gameOver = true;
+        Debug.Log("Killing slime. Death type: " + deathType);
+
         switch (deathType)
         {
             case "lmao":
-                //dies
-                
+                controller = true;
                 break;
             
             case "hunger":
@@ -95,59 +105,59 @@ public class Slime : MonoBehaviour
                         temp[i].enabled = false;
                     }
                 }
-                actionController.alive = false;
-                StartCoroutine(WaitOnHunger());
+                if (actionController != null)
+                {
+                    actionController.alive = false;
+                    Debug.Log("Set action controller alive to false");
+                }
                 controller = false;
                 break;
             
             case "OoB":
-                
+                controller = true;
                 break;
         }
 
-        //This is a great example of a magic number and is purely there for demonstrative reasons
-        //Time.timeScale = 0.3f;
-
-        if (controller == false)
+        if (controller)
         {
-            StartCoroutine(WaitOnHunger());
+            Debug.Log("Starting waitOnReload coroutine");
+            StartCoroutine(waitOnReload());
         }
         else
         {
-            StartCoroutine(waitOnReload());
+            Debug.Log("Starting WaitOnHunger coroutine");
+            StartCoroutine(WaitOnHunger());
         }
-            
-        
-        gameOver = true;
-        
-        
-        
     }
 
     void slimeFall(float phoneXValue) 
     {
-        if(phoneXValue > 0){ // If phone is leaning right move slime right
+        if (gameOver) return;
+        
+        if(phoneXValue > 0){
             slimeRigidbody.AddForce(Vector2.right * phoneXValue * forceSize);
         }
-        if(phoneXValue < 0){ // If phone is leaning left move slime right
+        if(phoneXValue < 0){
             slimeRigidbody.AddForce(Vector2.left * Math.Abs(phoneXValue) * forceSize);  
         }
     }
+    
     IEnumerator WaitOnHunger()
     {
-        yield return new WaitForSeconds(8 / Time.timeScale);
+        Debug.Log("WaitOnHunger coroutine running, waiting for " + (5 / Time.timeScale) + " seconds");
+        yield return new WaitForSeconds(5 / Time.timeScale);
+        Debug.Log("WaitOnHunger completed, loading scene 0");
         Time.timeScale = 1;
-        gameOver = false;
         InputSystem.DisableDevice(GravitySensor.current);
         SceneManager.LoadScene(0);
     }
 
     IEnumerator waitOnReload()
     {
-        //Watch this incredible        magic       number
-        yield return new WaitForSeconds(1/Time.timeScale);
+        Debug.Log("waitOnReload coroutine running, waiting for " + (1 / Time.timeScale) + " seconds");
+        yield return new WaitForSeconds(1 / Time.timeScale);
+        Debug.Log("waitOnReload completed, loading scene 1");
         Time.timeScale = 1;
-        gameOver = false;
         InputSystem.DisableDevice(GravitySensor.current);
         SceneManager.LoadScene(1);
     }
@@ -161,5 +171,4 @@ public class Slime : MonoBehaviour
     {
         return maxSatiety;
     }
-
 }

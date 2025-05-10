@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1319990541925900919}
   - component: {fileID: 1967274588362905099}
   - component: {fileID: 7310440887236234093}
-  - component: {fileID: -8765052339005618116}
   - component: {fileID: -3515511284729377573}
+  - component: {fileID: 5843663925527199029}
   m_Layer: 0
   m_Name: GreenFood
   m_TagString: Untagged
@@ -126,20 +126,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 4.39
---- !u!114 &-8765052339005618116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4856220010901406585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4feee33d2884749a7019123d1954a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nutritionalValue: 10
-  foodColor: {r: 0.19215688, g: 0.30588236, b: 0.098039225, a: 1}
 --- !u!50 &-3515511284729377573
 Rigidbody2D:
   serializedVersion: 5
@@ -167,3 +153,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5843663925527199029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856220010901406585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e354c96f3aa8047038d8c338015d9350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nutritionalValue: 20
+  foodColor: {r: 0.19607843, g: 0.30588236, b: 0.09803922, a: 1}

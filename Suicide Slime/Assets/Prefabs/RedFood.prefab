@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1673085078023070161}
   - component: {fileID: 8716483572126111449}
   - component: {fileID: 2474327484358009138}
-  - component: {fileID: 276972076726013940}
   - component: {fileID: -7956525756999845624}
+  - component: {fileID: 1396085566119310186}
   m_Layer: 0
   m_Name: RedFood
   m_TagString: Untagged
@@ -127,20 +127,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 7.62, y: 9.15}
   m_Direction: 0
---- !u!114 &276972076726013940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471617893435226788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4feee33d2884749a7019123d1954a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nutritionalValue: 5
-  foodColor: {r: 0.70980394, g: 0, b: 0, a: 1}
 --- !u!50 &-7956525756999845624
 Rigidbody2D:
   serializedVersion: 5
@@ -168,3 +154,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1396085566119310186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6471617893435226788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0cddf800e264d04b0c120da79ceab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nutritionalValue: 10
+  foodColor: {r: 0.74509805, g: 0.10980392, b: 0.06666667, a: 1}

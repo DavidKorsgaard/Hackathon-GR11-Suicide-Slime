@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Food : MonoBehaviour
+public abstract class Food : MonoBehaviour
 {
-    public int nutritionalValue;
-    [SerializeField] private Color foodColor = Color.magenta;
+    [SerializeField] protected int nutritionalValue;
+    [SerializeField] protected Color foodColor = Color.magenta;
     private bool isDragging = false;
     private Vector3 offset;
     private Rigidbody2D rb;
@@ -20,8 +20,14 @@ public class Food : MonoBehaviour
         {
             collider = GetComponent<Collider2D>();
         }
-        //Dunno why we would want it to be trigger. Change if needed -B
-        //GetComponent<Collider2D>().isTrigger = true;
+        
+        InitializeFood(); // Call new method for child classes to initialize their values
+    }
+
+    // New virtual method for child classes to override
+    protected virtual void InitializeFood()
+    {
+        // Base implementation does nothing - will be overridden by child classes
     }
 
     void Update()
@@ -61,62 +67,28 @@ public class Food : MonoBehaviour
         if (slimeCollider.bounds.Contains(transform.position))
         {
             Slime slime = slimeCollider.GetComponent<Slime>();
-            slime.FeedSlime(foodColor, nutritionalValue);
+            FeedSlime(slime); // Call our new method instead
             gameObject.SetActive(false);
             FindObjectOfType<FoodPool>().ReturnToPool(gameObject);
         }
     }
 
+    // New method to feed the slime - calls the implementation in the child class
+    public void FeedSlime(Slime slime)
+    {
+        // Increase satiety using the nutritionalValue
+        slime.UpdateSatiety(nutritionalValue);
+        
+        // Change color using the child class implementation
+        ChangeSlimeColor(slime);
+    }
+
+    // Abstract method that must be implemented by child classes
+    public abstract void ChangeSlimeColor(Slime slime);
 
     // Add this method to check if the food is being dragged
     public bool IsDragging()
     {
         return isDragging;
     }
-
-
-    /*void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Debug.Log("OnCollisionEnter2D called with: " + collision.collider.name);
-        if (collision.collider.CompareTag("Slime"))
-        {
-            Slime slime = collision.collider.GetComponent<Slime>();
-            slime.FeedSlime(foodColor, nutritionalValue);
-            gameObject.SetActive(false);
-            FindAnyObjectByType<FoodPool>().ReturnToPool(gameObject);
-        }
-
-    }*/
-
-    //public virtual void ChangeSlimeColor(Slime slime) { }
 }
-
-/*
-public class RedFood : Food
-{
-    void Start()
-    {
-        nutritionalValue = 10; // Set nutritional value for RedFood
-    }
-
-    public override void ChangeSlimeColor(Slime slime)
-    {
-        slime.ChangeColor(Color.red);
-    }
-}
-
-public class BlueFood : Food
-{
-    void Start()
-    {
-        nutritionalValue = 20; // Set nutritional value for BlueFood
-    }
-
-    public override void ChangeSlimeColor(Slime slime)
-    {
-        slime.ChangeColor(Color.blue);
-    }
-}
-*/
-
-// Add more food classes as needed
