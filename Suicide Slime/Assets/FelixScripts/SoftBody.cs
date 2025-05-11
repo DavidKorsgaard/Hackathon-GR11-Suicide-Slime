@@ -25,7 +25,7 @@ public class SoftBody : MonoBehaviour
     }
 
 
-    private void Update()
+    public void Update()
     {
 
         UpdateVerticies();

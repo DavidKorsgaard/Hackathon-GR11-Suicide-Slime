@@ -3,59 +3,116 @@ using UnityEngine;
 
 public class FoodPool : MonoBehaviour
 {
-    public GameObject[] foodPrefabs; // Make sure these prefabs have the appropriate Food child classes attached
-    private List<GameObject> pooledObjects;
+    public GameObject redFoodPrefab;
+    public GameObject greenFoodPrefab;
+    public GameObject blueFoodPrefab;
     public int poolSize = 10;
+
+    private List<GameObject> pooledObjects = new List<GameObject>();
 
     void Start()
     {
-        pooledObjects = new List<GameObject>();
-
+        // Create the initial pool of objects
         for (int i = 0; i < poolSize; i++)
         {
-            foreach (var prefab in foodPrefabs)
+            // Create one of each food type evenly
+            int foodType = i % 3;
+            GameObject prefab;
+            string name;
+
+            switch (foodType)
             {
-                GameObject obj = Instantiate(prefab);
-                obj.SetActive(false);
-                
-                // Add required components if they don't exist
-                if (obj.GetComponent<Rigidbody2D>() == null)
-                {
-                    obj.AddComponent<Rigidbody2D>();
-                }
-                
-                // Check if any Food component exists - if not, log a warning
-                Food foodComponent = obj.GetComponent<Food>();
-                if (foodComponent == null)
-                {
-                    Debug.LogWarning("Food prefab doesn't have a Food-derived component attached: " + prefab.name);
-                }
-                
-                // Add collider if none exists
-                if (obj.GetComponent<Collider2D>() == null)
-                {
-                    obj.AddComponent<BoxCollider2D>();
-                }
-                
-                pooledObjects.Add(obj);
+                case 0:
+                    prefab = redFoodPrefab;
+                    name = "RedFood";
+                    break;
+                case 1:
+                    prefab = greenFoodPrefab;
+                    name = "GreenFood";
+                    break;
+                default:
+                    prefab = blueFoodPrefab;
+                    name = "BlueFood";
+                    break;
             }
+
+            GameObject obj = Instantiate(prefab, transform);
+            obj.name = name;
+            obj.SetActive(false);
+            pooledObjects.Add(obj);
         }
+
+        // Shuffle the pool initially
+        ShuffleList(pooledObjects);
     }
 
+    // Gets any available pooled object
     public GameObject GetPooledObject()
     {
-        foreach (var obj in pooledObjects)
+        // First, try to find an inactive object
+        for (int i = 0; i < pooledObjects.Count; i++)
         {
-            if (!obj.activeInHierarchy)
+            if (!pooledObjects[i].activeInHierarchy)
             {
-                return obj;
+                return pooledObjects[i];
             }
         }
+
+        // If no inactive objects found, return the first one (even if active)
+        // This could be improved by creating more objects when needed
+        if (pooledObjects.Count > 0)
+        {
+            Debug.LogWarning("No inactive objects in pool. Reusing active object.");
+            return pooledObjects[0];
+        }
+
+        Debug.LogError("No objects in pool!");
         return null;
     }
 
+    // Gets a specific type of food from the pool
+    public GameObject GetPooledObjectOfType(System.Type foodType)
+    {
+        // First, try to find an inactive object of the requested type
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            Food food = pooledObjects[i].GetComponent<Food>();
+            if (!pooledObjects[i].activeInHierarchy && food != null && food.GetType() == foodType)
+            {
+                return pooledObjects[i];
+            }
+        }
+
+        // If no inactive objects of that type found, try to find any inactive object
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            if (!pooledObjects[i].activeInHierarchy)
+            {
+                Debug.LogWarning("No inactive " + foodType.Name + " found. Using different food type.");
+                return pooledObjects[i];
+            }
+        }
+
+        // Last resort: return any available object
+        Debug.LogWarning("No inactive objects in pool. Using first available object.");
+        return GetPooledObject();
+    }
+
+    // Return an object to the pool (deactivate it)
     public void ReturnToPool(GameObject obj)
     {
         obj.SetActive(false);
+    }
+
+    // Helper method to shuffle a list
+    private void ShuffleList<T>(List<T> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            int random = Random.Range(i, list.Count);
+            T temp = list[i];
+            list[i] = list[random];
+            list[random] = temp;
+        }
     }
 }

@@ -81,6 +81,13 @@ public abstract class Food : MonoBehaviour
         
         // Change color using the child class implementation
         ChangeSlimeColor(slime);
+        
+        // Change the slime shape using the ShapeManager
+        ShapeManager shapeManager = slime.GetComponent<ShapeManager>();
+        if (shapeManager != null)
+        {
+            shapeManager.ChangeShape(this.GetType());
+        }
     }
 
     // Abstract method that must be implemented by child classes
