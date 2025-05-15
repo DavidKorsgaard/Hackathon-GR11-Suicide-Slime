@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BlueFood : Food
 {
-    protected override void InitializeFood()
+    protected override void InitializeFood() //Enables individual nutritional values and colors for child class
     {
         nutritionalValue = 20; // Set nutritional value for BlueFood
         foodColor = Color.blue;

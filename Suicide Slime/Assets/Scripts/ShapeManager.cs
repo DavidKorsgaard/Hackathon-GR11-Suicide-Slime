@@ -68,7 +68,7 @@ public class ShapeManager : MonoBehaviour
         }
     }
 
-    private void SetupDefaultShape()
+    private void SetupDefaultShape() //Method to give slime a default shape
     {
         if (softBody == null || softBody.points == null || softBody.points.Length == 0)
         {
@@ -119,11 +119,12 @@ public class ShapeManager : MonoBehaviour
         }
 
         // Verify the shape has been configured
-        if (targetShape == null || targetShape.pointPositions == null || targetShape.pointPositions.Length == 0)
+        /*if (targetShape == null || targetShape.pointPositions == null || targetShape.pointPositions.Length == 0)
         {
             Debug.LogWarning("Target shape not configured properly: " + foodType.Name);
             return;
         }
+        */
 
         // Cancel any ongoing shape change
         if (_currentShapeChangeCoroutine != null)
@@ -152,7 +153,6 @@ public class ShapeManager : MonoBehaviour
         {
             ApplyShapeInstantly(targetShape);
         }
-        
         
         
         // Wait for the specified duration

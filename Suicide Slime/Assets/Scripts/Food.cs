@@ -14,7 +14,7 @@ public abstract class Food : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (GetComponent<Collider2D>() == null)
         {
-            collider = gameObject.AddComponent<CircleCollider2D>(); // Add Collider2D component if not already present
+            collider = gameObject.AddComponent<CircleCollider2D>(); // Add Collider2D if not already present
         }
         else
         {
@@ -47,7 +47,7 @@ public abstract class Food : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    void OnMouseDown() //Events that happen when you touch food
     {
         isDragging = true;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -55,13 +55,13 @@ public abstract class Food : MonoBehaviour
         offset = transform.position - mousePosition;
     }
 
-    void OnMouseUp()
+    void OnMouseUp() //Events that happen when you let go of food
     {
         isDragging = false;
-        CheckIfFedToSlime();
+        CheckIfFedToSlime(); //If not fed to slime, gravity is enabled and food will fall
     }
     
-    void CheckIfFedToSlime()
+    void CheckIfFedToSlime() //Method to return food to object pool if fed to slime
     {
         CircleCollider2D slimeCollider = FindObjectOfType<Slime>().GetComponent<CircleCollider2D>();
         if (slimeCollider.bounds.Contains(transform.position))
@@ -94,8 +94,9 @@ public abstract class Food : MonoBehaviour
     public abstract void ChangeSlimeColor(Slime slime);
 
     // Add this method to check if the food is being dragged
-    public bool IsDragging()
+   /* public bool IsDragging()
     {
         return isDragging;
     }
+    */
 }

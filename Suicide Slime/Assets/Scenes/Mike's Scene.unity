@@ -1485,6 +1485,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 408797959142501637, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3682312347621767007, guid: dba3ce8873cb48a4995b2b06ed0b24b7, type: 3}
       propertyPath: m_Name
       value: FelixSlimyPrefab
