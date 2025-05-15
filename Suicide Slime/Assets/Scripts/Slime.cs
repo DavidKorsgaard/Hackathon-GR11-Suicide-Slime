@@ -148,7 +148,7 @@ public class Slime : MonoBehaviour
         yield return new WaitForSeconds(5 / Time.timeScale);
         Debug.Log("WaitOnHunger completed, loading scene 0");
         Time.timeScale = 1;
-        InputSystem.DisableDevice(GravitySensor.current);
+        //InputSystem.DisableDevice(GravitySensor.current);
         SceneManager.LoadScene(0);
     }
 
@@ -158,7 +158,7 @@ public class Slime : MonoBehaviour
         yield return new WaitForSeconds(1 / Time.timeScale);
         Debug.Log("waitOnReload completed, loading scene 1");
         Time.timeScale = 1;
-        InputSystem.DisableDevice(GravitySensor.current);
+        //InputSystem.DisableDevice(GravitySensor.current);
         SceneManager.LoadScene(1);
     }
 
