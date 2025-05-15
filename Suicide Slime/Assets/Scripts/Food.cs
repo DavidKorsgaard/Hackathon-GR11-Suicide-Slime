@@ -94,9 +94,8 @@ public abstract class Food : MonoBehaviour
     public abstract void ChangeSlimeColor(Slime slime);
 
     // Add this method to check if the food is being dragged
-   /* public bool IsDragging()
+    public bool IsDragging()
     {
         return isDragging;
     }
-    */
 }
