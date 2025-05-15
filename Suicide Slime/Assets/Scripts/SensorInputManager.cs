@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
     {
         SensorCheck();
 
-        //gravityOrientationRawData = GravitySensor.current.gravity.ReadValue(); //REMEMBER TO UNCOMMENT THIS TO ENABLE CONTROL
+        gravityOrientationRawData = GravitySensor.current.gravity.ReadValue(); //REMEMBER TO UNCOMMENT THIS TO ENABLE CONTROL
         // Gravity is equal to gravity sensor. 
         // The value (0, -1, 0) would be the same as holding the phone perfectly upright in your hand.
     }
