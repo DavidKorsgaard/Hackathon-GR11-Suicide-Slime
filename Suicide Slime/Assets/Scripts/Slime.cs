@@ -73,13 +73,13 @@ public class Slime : MonoBehaviour
         spriteRenderer.color = color;
     }
 
-    public void FeedSlime(Color color, int nutrition)
+    /*public void FeedSlime(Color color, int nutrition) //Method is now being called inside the Food script
     {
         Debug.Log("Feed Slime!");
         UpdateSatiety(nutrition);
         color.a = 0.647f;
         ChangeColor(color);
-    }
+    }*/
 
     public virtual void KillSlime(string deathType)
     {
